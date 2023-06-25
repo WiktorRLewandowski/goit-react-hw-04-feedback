@@ -29,17 +29,19 @@ class App extends Component {
   }
   
   totalFeedback = e => (
-    this.props.total = this.state.good + this.state.bad + this.state.neutral
+    this.total = this.state.good + this.state.bad + this.state.neutral
   );
 
-  positiveFeedback = () => this.props.total > 0 ? Math.round((this.state.good / this.props.total)* 100) : `0`;
+  positiveFeedback = () => 
+  this.total > 0 
+  ? Math.round((this.state.good / this.total) * 100) 
+  : 0;
 
   // totalFeedback = e => console.log(this.state.reduce((acc, curr)=> acc+curr, this.props.initialValue))
 
   render() {
     const {good, neutral, bad} = this.state
-    // const {total, percentage} = this.props
-    const total = this.totalFeedback(); 
+    const total = this.totalFeedback();
     const percentage = this.positiveFeedback();
 
     return (

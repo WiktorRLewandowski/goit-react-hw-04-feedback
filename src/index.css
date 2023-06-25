@@ -70,21 +70,3 @@ code {
     transition: none;
   }
 }
-
-.statistics-heading {
-  font-size: 2rem;
-  padding: 1rem;  
-}
-
-.statistics-container {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-
-  list-style-type: none;
-}
-
-.statistics-item {
-  font-size: 1.5rem;
-}
