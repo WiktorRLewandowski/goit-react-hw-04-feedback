@@ -2,18 +2,44 @@ import { Component } from "react";
 
 class App extends Component {
 
+  static defaultProps = {
+    step: 1,
+    initialValue: 0,
+    total: 0,
+    percentage: 0
+  }
+
+  // constructor() {
+  //   super();
+  //   this.updateFeedback = this.updateFeedback.bind(this);
+  // }
+ 
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
   }
 
-  updateFeedback = (ev) => {
-    this.setState(prevState => prevState.value + 1)
-    // console.log('Click:', ev.target) 
+  updateFeedback = (e) => {
+    this.setState((prevState) => ({ 
+      [e]: prevState[e] + this.props.step
+    }))
   }
+  
+  totalFeedback = e => (
+    this.props.total = this.state.good + this.state.bad + this.state.neutral
+  );
+
+  positiveFeedback = () => this.props.total > 0 ? Math.round((this.state.good / this.props.total)* 100) : `0`;
+
+  // totalFeedback = e => console.log(this.state.reduce((acc, curr)=> acc+curr, this.props.initialValue))
 
   render() {
+    const {good, neutral, bad} = this.state
+    // const {total, percentage} = this.props
+    const total = this.totalFeedback(); 
+    const percentage = this.positiveFeedback();
+
     return (
       <div
         style={{
@@ -31,23 +57,23 @@ class App extends Component {
 
         <ul className="btn-container">
           <li className="btn-item">
-            <button className="btn" onClick={this.updateFeedback()}>Good</button>
+            <button className="btn" onClick={()=> this.updateFeedback('good')}>Good</button>
           </li>
           <li className="btn-item">
-            <button className="btn" onClick={this.updateFeedback()}>Neutral</button>
+            <button className="btn" onClick={()=> this.updateFeedback('neutral')}>Neutral</button>
           </li>
           <li className="btn-item">
-            <button className="btn" onClick={this.updateFeedback.bind(this)}>Bad</button>
+            <button className="btn" onClick={()=> this.updateFeedback('bad')}>Bad</button>
           </li>
         </ul>
 
         <h2 className="statistics-heading">Statistics</h2>
         <ul className="statistics-container">
-          <li className="statistics-item">{`Good: ${this.state.good}`}</li>
-          <li className="statistics-item">{`Neutral: ${this.state.good}`}</li>
-          <li className="statistics-item">{`Bad: ${this.state.good}`}</li>
-          <li className="statistics-item">{`Total: `}</li>
-          <li className="statistics-item">{`Positive feedback: `}</li>
+          <li className="statistics-item">{`Good: ${good}`}</li>
+          <li className="statistics-item">{`Neutral: ${neutral}`}</li>
+          <li className="statistics-item">{`Bad: ${bad}`}</li>
+          <li className="statistics-item">{`Total: ${total}`}</li>
+          <li className="statistics-item">{`Positive feedback: ${percentage}%`}</li>
         </ul>
 
       </div>
