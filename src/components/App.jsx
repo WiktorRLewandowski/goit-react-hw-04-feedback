@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Statistics } from './Statistics'
+import { FeedbackOptions } from './FeedbackOptions'
 // import PropTypes from 'prop-types';
 
 class App extends Component {
@@ -59,17 +60,9 @@ class App extends Component {
       >
         <h2 className="heading">Please, leave feedback!</h2>
 
-        <ul className="btn-container">
-          <li className="btn-item">
-            <button className="btn" onClick={()=> this.updateFeedback('good')}>Good</button>
-          </li>
-          <li className="btn-item">
-            <button className="btn" onClick={()=> this.updateFeedback('neutral')}>Neutral</button>
-          </li>
-          <li className="btn-item">
-            <button className="btn" onClick={()=> this.updateFeedback('bad')}>Bad</button>
-          </li>
-        </ul>
+        <FeedbackOptions
+        options={Object.keys(this.state)}
+        onLeaveFeedback={this.updateFeedback}/>
 
         <Statistics
           good={good}
