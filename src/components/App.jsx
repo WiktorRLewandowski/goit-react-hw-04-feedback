@@ -1,4 +1,6 @@
 import { Component } from "react";
+import { Statistics } from './Statistics'
+// import PropTypes from 'prop-types';
 
 class App extends Component {
 
@@ -67,14 +69,12 @@ class App extends Component {
           </li>
         </ul>
 
-        <h2 className="statistics-heading">Statistics</h2>
-        <ul className="statistics-container">
-          <li className="statistics-item">{`Good: ${good}`}</li>
-          <li className="statistics-item">{`Neutral: ${neutral}`}</li>
-          <li className="statistics-item">{`Bad: ${bad}`}</li>
-          <li className="statistics-item">{`Total: ${total}`}</li>
-          <li className="statistics-item">{`Positive feedback: ${percentage}%`}</li>
-        </ul>
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={total}
+          percentage={percentage}/>
 
       </div>
     );
