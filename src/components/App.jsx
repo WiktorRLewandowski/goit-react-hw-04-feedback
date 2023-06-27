@@ -29,11 +29,14 @@ class App extends Component {
     initialValue: PropTypes.number,
     total: PropTypes.number,
     percentage: PropTypes.number,
+    good: PropTypes.number,
+    neutral: PropTypes.number,
+    bad: PropTypes.number,
   }
 
-  updateFeedback = (e) => {
+  updateFeedback = (ev) => {
     this.setState((prevState) => ({ 
-      [e]: prevState[e] + this.props.step
+      [ev]: prevState[ev] + this.props.step
     }))
   }
   
